@@ -14,4 +14,13 @@ public class ConteodeGenes {
             return conteoRecursivo(genoma, index + 1);
         }
     }
+public static int conteodeGenes(String dna) {
+    int index = dna.indexOf("ATG");
+    if (index == -1) {
+        return 0;
+    } else {
+        String subDna = dna.substring(index + 3);
+        return 1 + conteodeGenes(subDna);
+        }
+    }
 }

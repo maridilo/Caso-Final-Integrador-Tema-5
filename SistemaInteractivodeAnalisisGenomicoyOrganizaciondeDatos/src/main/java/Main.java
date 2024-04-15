@@ -18,5 +18,12 @@ public static void main(String[] args) {
     int combinacionesGeneticas = CalculoCombinacionesGeneticas.CalculoCombinacionesGeneticas(numGenes);
     System.out.println("El número de combinaciones genéticas es: " + combinacionesGeneticas);
 
+    scanner.nextLine(); // consume the newline left-over
+    System.out.println("Ingrese una cadena de genes para calcular todas las combinaciones posibles:");
+    String genes = scanner.nextLine();
+    CalculoCombinacionesGeneticas.CalculoCombinacionesGeneticas(genes, "");
+
+    scanner.close();
     }
 }
+
