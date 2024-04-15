@@ -1,7 +1,13 @@
-
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import AnalisisGenomico.ConteodeGenes;
 import AnalisisGenomico.CalculoCombinacionesGeneticas;
+import GestiondeInformacionCientifica.BusquedaEficienteenTextos;
+import GestiondeInformacionCientifica.GestionFechas;
+import GestiondeInformacionCientifica.OrganizacionDocumentos;
 import HerramientasdeAnalisisNumerico.SumatoriayListadoNumeros;
 import HerramientasdeAnalisisNumerico.PotenciasyMaximos;
 
@@ -51,6 +57,40 @@ public static void main(String[] args) {
     }
     int maximo = PotenciasyMaximos.maximo(array, 0);
     System.out.println("El valor máximo en el array es: " + maximo);
+
+
+    System.out.println("Ingrese el nombre del archivo para ordenar sus líneas:");
+    String fileName = scanner.nextLine();
+    try {
+        List<String> sortedLines = OrganizacionDocumentos.sortLinesInFile(fileName);
+        System.out.println("Las líneas ordenadas son:");
+        for (String line : sortedLines) {
+            System.out.println(line);
+        }
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+    }
+
+    System.out.println("Ingrese la palabra a buscar y el nombre del archivo:");
+    String word = scanner.nextLine();
+    fileName = scanner.nextLine();
+    try {
+        boolean found = BusquedaEficienteenTextos.linearSearch(word, fileName);
+        System.out.println("La palabra fue encontrada (búsqueda lineal): " + found);
+        List<String> lines = OrganizacionDocumentos.sortLinesInFile(fileName);
+        found = BusquedaEficienteenTextos.binarySearch(word, lines);
+        System.out.println("La palabra fue encontrada (búsqueda binaria): " + found);
+    } catch (IOException e) {
+        System.out.println("Error al leer el archivo: " + e.getMessage());
+    }
+
+    GestionFechas gestionFechas = new GestionFechas();
+    System.out.println("Ingrese una fecha (formato yyyy-MM-dd):");
+    String fecha = scanner.nextLine();
+    LocalDate date = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    gestionFechas.addDate(date);
+    System.out.println("Las fechas ordenadas son:");
+    gestionFechas.listDates();
 
     scanner.close();
     }
