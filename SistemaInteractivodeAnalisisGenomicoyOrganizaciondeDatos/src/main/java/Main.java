@@ -1,8 +1,12 @@
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import AnalisisGenomico.ConteodeGenes;
 import AnalisisGenomico.CalculoCombinacionesGeneticas;
 import GestiondeInformacionCientifica.BusquedaEficienteenTextos;
@@ -10,7 +14,7 @@ import GestiondeInformacionCientifica.GestionFechas;
 import GestiondeInformacionCientifica.OrganizacionDocumentos;
 import HerramientasdeAnalisisNumerico.SumatoriayListadoNumeros;
 import HerramientasdeAnalisisNumerico.PotenciasyMaximos;
-
+import OptimizaciondeProcesos.MejoraAlgoritmos;
 
 public class Main {
 public static void main(String[] args) {
@@ -91,6 +95,16 @@ public static void main(String[] args) {
     gestionFechas.addDate(date);
     System.out.println("Las fechas ordenadas son:");
     gestionFechas.listDates();
+
+    System.out.println("Ingrese la longitud del array para ordenar:");
+    longitud = scanner.nextInt();
+    array = new int[longitud];
+    System.out.println("Ingrese los elementos del array:");
+    for (int i = 0; i < longitud; i++) {
+        array[i] = scanner.nextInt();
+    }
+    MejoraAlgoritmos.sort(array);
+    System.out.println("El array ordenado es: " + Arrays.toString(array));
 
     scanner.close();
     }
